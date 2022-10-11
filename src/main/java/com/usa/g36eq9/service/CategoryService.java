@@ -61,4 +61,7 @@ public class CategoryService {
             categoryRepository.delete(ct.get());
         }
     }
+    public void deleteAll(){
+        categoryRepository.deleteAll();
+    }
 }
