@@ -61,13 +61,13 @@ public class BoatService {
             return b;
         }
     }
-    public boolean delete(int id){
-        boolean flag = false;
+    public void delete(int id){
         Optional<Boat> b = boatRepository.getBoat(id);
         if(b.isPresent()){
             boatRepository.delete(b.get());
-            flag = true;
         }
-        return flag;
+    }
+    public void deleteAll(){
+        boatRepository.deleteAll();
     }
 }

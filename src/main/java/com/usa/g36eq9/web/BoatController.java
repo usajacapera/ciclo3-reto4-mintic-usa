@@ -41,8 +41,9 @@ public class BoatController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public boolean delete(@PathVariable("id") int id){
-        return boatService.delete(id);
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") int id){
+        boatService.delete(id);
     }
+
 }

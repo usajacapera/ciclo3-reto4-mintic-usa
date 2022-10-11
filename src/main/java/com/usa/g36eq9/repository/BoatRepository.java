@@ -23,4 +23,7 @@ public class BoatRepository {
     public void delete(Boat boat){
         boatCrudRepository.delete(boat);
     }
+    public void deleteAll(){
+        boatCrudRepository.deleteAll();
+    }
 }

@@ -42,7 +42,11 @@ public class ClientController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public boolean delete(@PathVariable("id") int idClient){
-        return clientService.delete(idClient);
+    public void delete(@PathVariable("id") int idClient){ clientService.delete(idClient);
+    }
+    @DeleteMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAll(){
+        clientService.deleteAll();
     }
 }
