@@ -35,11 +35,13 @@ public class BoatController {
     }
 
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public Boat update(@RequestBody Boat b){
         return boatService.update(b);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public boolean delete(@PathVariable("id") int id){
         return boatService.delete(id);
     }

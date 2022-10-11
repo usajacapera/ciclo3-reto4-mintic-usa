@@ -1,5 +1,5 @@
-let ruta = "http://150.136.171.92:8080"
-//let ruta ="http://localhost:8080"
+//let ruta = "http://150.136.171.92:8080"
+let ruta ="http://localhost:8080"
 /**
  * -----------------------------------------------------------------------------------------------------------
  *                                                  BARCOS
@@ -293,7 +293,7 @@ function removeInfBoat(idElemento){
  *                                                  CATEGORIAS
  * -----------------------------------------------------------------------------------------------------------
  */
-/*function getInfCategory(){
+function getInfCategory(){
     $.ajax({
         headers:{
             accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
@@ -475,7 +475,7 @@ function removeInfCategory(idElemento){
             console.log("Peticion completa");
         }
     });
-}*/
+}
 /**
  * -----------------------------------------------------------------------------------------------------------
  *                                                  CLIENTES
