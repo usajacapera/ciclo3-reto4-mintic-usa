@@ -55,13 +55,10 @@ public class CategoryService {
             return ct;
         }
     }
-    public boolean delete(int id){
-        boolean flag = false;
+    public void delete(int id){
         Optional<Category> ct = categoryRepository.getCategory(id);
         if(ct.isPresent()){
             categoryRepository.delete(ct.get());
-            flag = true;
         }
-        return flag;
     }
 }
