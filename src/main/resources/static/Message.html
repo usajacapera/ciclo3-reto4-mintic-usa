@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/misFunciones.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <base href="/"/>
+  <title>Mensajes</title>
+</head>
+<body>
+<main>
+  <section class="sectionMessage" id="section4Message">
+    <div class="divPrincipalCategory">
+      <h2 class="h2Category">MENSAJES</h2>
+      <ul class="ulCategory">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="Category.html">Categorias</a></li>
+        <li><a href="Boat.html">Barcos</a></li>
+        <li><a href="Client.html">Clientes</a></li>
+        <li><a href="Reservation.html">Reservaciones</a></li>
+      </ul>
+      <div class="divContenedor">
+        <div class="divContenedorIzq">
+          <div class="divIzqJr">
+            <div class="div-form">
+              <h3>Ingresar Datos</h3>
+              <form class="formDate">
+                <label for="idMensaje">
+                  <span>ID Message</span>
+                  <input type="number" id="idMensaje" disabled="" placeholder="Ingrese idMensaje">
+                </label>
+                <label for="messagetext">
+                  <span>MessageText</span>
+                  <input type="text" id="messagetext" placeholder="Ingrese messagetext">
+                </label>
+              </form>
+              <div class="divSelectionClientBoat">
+                <span>Barco</span>
+                <input type="text" id="dataBoatMessage" placeholder="nombre Barco">
+                <span>Id</span>
+                <input type="number" id="idGetBoatMessage">
+                <span>Cliente</span>
+                <input type="text" id="dataClientMessage" placeholder="nombre Cliente">
+                <span>Id</span>
+                <input type="number" id="idGetClientMessage">
+              </div><!--/"divSelectionClientBoat"-->
+            </div>
+            <div class="div-button">
+              <button onclick="guardarMensaje()">Crear</button>
+              <button onclick="editarMensaje()">Actualizar</button>
+              <button onclick="traerMensajes()">Consultar</button>
+              <button onclick="queryByIdMessage()">TraerID</button>
+              <input class="input-id" type="number" id="getOneMessage" placeholder="id">
+            </div>
+          </div><!--/divIzqJr-->
+        </div><!--/divContenedorIzq-->
+        <div class="divContenedorDer">
+          <h3>Mostrar Información</h3>
+          <div class="div-table">
+            <p id="resultadoMensajes"></p>
+          </div>
+        </div><!--/divContenedorDer-->
+      </div><!--/divContenedor-->
+    </div><!--/divPrincipal-->
+  </section><!--/"sectionMessage"-->
+</main>
+</body>
+</html>

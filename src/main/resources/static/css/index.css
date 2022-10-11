@@ -1,0 +1,13 @@
+
+.divContenedorHome{
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-rows: auto auto;
+    padding: 15px;
+    align-items: center;
+}
+.divIndex{
+    background-color: bisque;
+    width: 100vh;
+    border: 2px solid black;
+}

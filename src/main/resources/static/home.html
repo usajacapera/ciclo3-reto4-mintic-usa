@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Alquiler de Barcos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <base href="/"/>
+    <script type="text/javascript" src="js/misFunciones.js"></script>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<header>
+
+    <div class="divHome" id="Home">
+        <h1 >Alquiler de Botes</h1>
+        <nav class="navHome">
+            <ul>
+                <li><a href="Category.html">Categorias</a></li>
+                <li><a href="Boat.html">Barcos</a></li>
+                <li><a href="Client.html">Clientes</a></li>
+                <li><a href="Message.html">Mensajes</a></li>
+                <li><a href="Reservation.html">Reservaciones</a></li>
+            </ul>
+        </nav>
+        <div class="divContenedorHome">
+            <div class="divFraseCelebre">
+                <p class="pFraseCelebre">Un barco no deberia navegar con una sola ancla, ni la vida con una sola esperanza...<h5 class="h5Frase">...Epicteto filósofo griego</h5></p>
+            </div><!--/"divFraseCelebre"-->
+        </div>
+        </div><!--/"divContenedorHome"-->
+</header>
+<main>
+    <!--====================  TABLA CATEGORIAS  ======================================-->
+<!--        <section class="sectionCategory" id="section1Category">
+            <div class="divPrincipalCategory">
+                <h2 class="h2Category">CATEGORIAS</h2>
+                <ul class="ulCategory">
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#section2Boat">Barcos</a></li>
+                    <li><a href="#section3Client">Clientes</a></li>
+                    <li><a href="#section4Message">Mensajes</a></li>
+                    <li><a href="#section5Reservation">Reservaciones</a></li>
+                </ul>
+                <div class="divContenedor">
+                    <div class="divContenedorIzq">
+                        <div class="divIzqJr">
+                            <div class="div-form">
+                                <h3>Ingresar Datos</h3>
+                                <form class="formDate">
+                                    <label for="idCategory">
+                                        <span>Id</span>
+                                        <input type="number" id="idCategory" disabled="" placeholder="Ingresa id">
+                                    </label>
+                                    <label for="nameCategory">
+                                        <span>Name</span>
+                                        <input type="text" id="nameCategory" placeholder="Ingresa name">
+                                    </label>
+                                    <label for="descriptionCategory">
+                                        <span>Description</span>
+                                        <input type="text" id="descriptionCategory" placeholder="Ingresa description">
+                                    </label>
+                                </form>
+                            </div>BORRAR AQUI!!!!!!--><!--cierre div-form-->
+  <!--                      <div class="div-button">
+                            <button onclick="addInfoCategory()">Crear</button>
+                            <button onclick="modInfCategory()">Actualizar</button>
+                            <button onclick="getInfCategory()"> Consultar</button>
+                            <button onclick="queryByIdCategory()">TraerID</button>
+                            <input class="input-id" type="number" id="idCat" placeholder="idCat">
+                        </div>
+                    </div>BORRAR AQUI!!!!--><!--/"divIzqJr"-->
+                </div><!--/"divContenedorIzq"-->
+
+ <!--               <div class="divContenedorDer">
+                    <h3>Mostrar Información</h3>
+                    <div class="div-table">
+                        <p id="resultadoCategory"></p>
+                        <p class="pbarcos" id="barcos"></p>
+                    </div>
+                </div>
+
+            </div>BORRAR AQUI!!!!--><!--/"divContenedor"-->
+        </div><!--/"divPrincipal"-->
+    </section>-->
+    <!--====================  TABLA BARCOS  ==========================================-->
+<!--    <section class="sectionBoat" id="section2Boat">
+        <div class="divPrincipalCategory">
+            <h2 class="h2Category">BARCOS</h2>
+            <ul class="ulCategory">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#section1Category">Categorias</a></li>
+                <li><a href="#section3Client">Clientes</a></li>
+                <li><a href="#section4Message">Mensajes</a></li>
+                <li><a href="#section5Reservation">Reservaciones</a></li>
+            </ul>
+            <div class="divContenedor">
+                <div class="divContenedorIzq">
+                    <div class="divIzqJr">
+                        <div class="div-form">
+                            <h3>Ingresar Datos</h3>
+                            <form class="formDate">
+                                <label for="id">
+                                    <span>Id</span>
+                                    <input type="number" id="id" disabled="" placeholder="Ingresa id">
+                                </label>
+                                <label for="brand">
+                                    <span>Brand</span>
+                                    <input type="text" id="brand" placeholder="Ingresa brand">
+                                </label>
+                                <label for="year">
+                                    <span>Year</span>
+                                    <input type="number" id="year" placeholder="Ingresa year">
+                                </label>
+                                <label for="name">
+                                    <span>Name</span>
+                                    <input type="text" id="name" placeholder="Ingresa name">
+                                </label>
+                                 <label for="description">
+                                     <span>Description</span>
+                                     <input type="text" id="description" placeholder="Ingresa description">
+                                 </label>
+                            </form>
+                            <div class="divcatBoteInput">
+                                <span>Categoria</span>
+                                <input class="inputCategory" type="text" disabled="" id="category" placeholder="category">
+                                <span>Id</span>
+                                <input class="inputEnviarId" type="number" id="enviarId" placeholder="id">
+                            </div>
+                        </div>
+                        <div class="div-button">
+                            <button onclick="addInfoBoat()">Crear</button>
+                            <button onclick="modInfBoat()">Actualizar</button>
+                            <button onclick="getInfBoat()"> Consultar</button>
+                            <button onclick="queryByIdBoat()">TraerID</button>
+                            <input class="input-id" type="number" id="idBote" placeholder="id">
+                        </div>
+                    </div>
+                </div>
+                <div class="divContenedorDer">
+                    <h3>Mostrar Información</h3>
+                    <div class="div-table">
+                        <p id="resultadoBote"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>-->
+    <!--====================  TABLA CLIENTES  ========================================-->
+<!--    <section class="sectionClient" id="section3Client">
+        <div class="divPrincipalCategory">
+            <h2 class="h2Category">CLIENTES</h2>
+            <ul class="ulCategory">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#section1Category">Categorias</a></li>
+                <li><a href="#section2Boat">Barcos</a></li>
+                <li><a href="#section4Message">Mensajes</a></li>
+                <li><a href="#section5Reservation">Reservaciones</a></li>
+            </ul>
+            <div class="divContenedor">
+                <div class="divContenedorIzq">
+                    <div class="divIzqJr">
+                        <div class="div-form">
+                            <h3>Ingresar Datos</h3>
+                            <form class="formDate">
+                                <label for="idCliente">
+                                    <span>ID Client</span>
+                                    <input type="number" id="idCliente" disabled=""  placeholder="Ingrese idCliente">
+                                </label>
+                                <label for="nameCliente">
+                                    <span>Name</span>
+                                    <input type="text" id="nameCliente" placeholder="Ingrese nameCliente">
+                                </label>
+                                <label for="email">
+                                    <span>Email</span>
+                                    <input type="text" id="email" placeholder="Ingrese email">
+                                </label>
+                                <label for="password">
+                                    <span>Password</span>
+                                    <input type="text" id="password" placeholder="Ingrese password">
+                                </label>
+                                <label for="age">
+                                    <span>Age</span>
+                                    <input type="number" id="age" placeholder="Ingrese age">
+                                </label>
+                            </form>
+                        </div>
+                        <div class="div-button">
+                            <button onclick="guardarInfCliente()">Crear</button>
+                            <button onclick="editarInfCliente()">Actualizar</button>
+                            <button onclick="traerInfCliente()">Consultar</button>
+                            <button onclick="queryByIdClient()">TraerID</button>
+                            <input class="input-id" type="number" id="SetIdClient" placeholder="id">
+                        </div>
+                    </div>BORRAR AQUI!!!!!!--><!--/"divIzqJr"-->
+<!--                </div>BORRAR AQUI!!!!!!--><!--/"divContenedorIzq"-->
+<!--               <div class="divContenedorDer">
+                       <h3>Mostrar Información</h3>
+                       <div class="div-table">
+                           <p id="resultadoCliente"></p>
+                       </div>
+                       <p class="pbarcos" id="messagesClient"></p>
+                       <p class="pbarcos" id="reservationsClient"></p>
+                   </div>BORRAR AQUI!!--><!--/"divContenedorDer"-->
+            </div><!--/"divContenedor"-->
+        </div><!--/"divPrincipal"-->
+    </section>
+    <!--====================  TABLA MENSAJES  ========================================-->
+<!--    <section class="sectionMessage" id="section4Message">
+        <div class="divPrincipalCategory">
+            <h2 class="h2Category">MENSAJES</h2>
+            <ul class="ulCategory">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#section1Category">Categorias</a></li>
+                <li><a href="#section2Boat">Barcos</a></li>
+                <li><a href="#section3Client">Clientes</a></li>
+                <li><a href="#section5Reservation">Reservaciones</a></li>
+            </ul>
+            <div class="divContenedor">
+                <div class="divContenedorIzq">
+                    <div class="divIzqJr">
+                        <div class="div-form">
+                            <h3>Ingresar Datos</h3>
+                            <form class="formDate">
+                                <label for="idMensaje">
+                                    <span>ID Message</span>
+                                    <input type="number" id="idMensaje" disabled="" placeholder="Ingrese idMensaje">
+                                </label>
+                                <label for="messagetext">
+                                    <span>MessageText</span>
+                                    <input type="text" id="messagetext" placeholder="Ingrese messagetext">
+                                </label>
+                            </form>
+                            <div class="divSelectionClientBoat">
+                                <span>Barco</span>
+                                <input type="text" id="dataBoatMessage" placeholder="nombre Barco">
+                                <span>Id</span>
+                                <input type="number" id="idGetBoatMessage">
+                                <span>Cliente</span>
+                                <input type="text" id="dataClientMessage" placeholder="nombre Cliente">
+                                <span>Id</span>
+                                <input type="number" id="idGetClientMessage">
+                            </div>BORRAR AQUI!!!!!--><!--/"divSelectionClientBoat"-->
+ <!--                       </div>
+                        <div class="div-button">
+                            <button onclick="guardarMensaje()">Crear</button>
+                            <button onclick="editarMensaje()">Actualizar</button>
+                            <button onclick="traerMensajes()">Consultar</button>
+                            <button onclick="queryByIdMessage()">TraerID</button>
+                            <input class="input-id" type="number" id="getOneMessage" placeholder="id">
+                        </div>
+                    </div>BORRAR AQUI!!--><!--/divIzqJr-->
+ <!--               </div>BORRAR AQUI!!--><!--/divContenedorIzq-->
+ <!--               <div class="divContenedorDer">
+                    <h3>Mostrar Información</h3>
+                    <div class="div-table">
+                        <p id="resultadoMensajes"></p>
+                    </div>
+                </div>BORRAR AQUI!!--><!--/divContenedorDer-->
+            </div><!--/divContenedor-->
+        </div><!--/divPrincipal-->
+    </section><!--/"sectionMessage"-->
+    <!--====================  TABLA RESERVAS  =========================================-->
+<!--    <section class="sectionReservation" id="section5Reservation">
+        <div class="divPrincipalCategory">
+            <h2 class="h2Category">RESERVAS</h2>
+            <ul class="ulCategory">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#section1Category">Categorias</a></li>
+                <li><a href="#section2Boat">Barcos</a></li>
+                <li><a href="#section3Client">Clientes</a></li>
+                <li><a href="#section4Message">Mensajes</a></li>
+            </ul>
+            <div class="divContenedor">
+                <div class="divContenedorIzq">
+                    <div class="divIzqJr">
+                        <div class="div-form">
+                            <h3>Ingresar Datos</h3>
+                            <form class="formDate">
+                                <label for="idReservation">
+                                    <span>Id</span>
+                                    <input type="number" id="idReservation" disabled=""  placeholder="idReservation">
+                                </label>
+                                <label for="startDate">
+                                    <span>StartDate</span>
+                                    <input type="text" id="startDate"  placeholder="startDate">
+                                </label>
+                                <label for="devolutionDate">
+                                    <span>DevolutionDate</span>
+                                    <input type="text" id="devolutionDate"  placeholder="devolutionDate">
+                                </label>
+                            </form>
+                            <div class="divSelectionClientBoat">
+                                <span>Barco</span>
+                                <input type="text" id="dataBoat" placeholder="nombre Barco">
+                                <span>Id</span>
+                                <input type="number" id="idGetBoat">
+                                <span>Cliente</span>
+                                <input type="text" id="dataClient" placeholder="nombre Cliente">
+                                <span>Id</span>
+                                <input type="number" id="idGetClient">
+
+                            </div>BORRAR AQUI!!!!!--><!--/"divSelectionClientBoat"-->
+<!--                        </div>
+                        <div class="div-button">
+                            <button onclick="createReservation()">Crear</button>
+                            <button onclick="modReservation()">Actualizar</button>
+                            <button onclick="getReservations()">Consultar</button>
+                            <button onclick="queryByIdReservation()">Traer</button>
+                            <input class="input-id" type="number" id="SetIdReservation" placeholder="id">
+                        </div>
+
+                    </div>BORRAR AQUI!!!!--><!--/"divIzqJr"-->
+<!--                </div>BORRAR AQUI!!!--><!--/"divContenedorIzq"-->
+ <!--               <div class="divContenedorDer">
+                    <h3>Mostrar Información</h3>
+                    <div class="div-table">
+                        <p class="pbarcos" id="resultadoReservaciones"></p>
+                    </div>
+                    <p class="pbarcos" id="messages"></p>
+                    <p class="pbarcos" id="reservations"></p>
+                </div>BORRAR AQUI!!!!--><!--/"divContenedorDer"-->
+            </div><!--/"divContenedor"-->
+        </div><!--/"divPrincipal"-->
+    </section>
+</main>
+<footer>
+</footer>
+</body>
+</html>

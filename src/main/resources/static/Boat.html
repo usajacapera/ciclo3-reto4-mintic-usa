@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/misFunciones.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <base href="/"/>
+    <title>Barcos</title>
+</head>
+<body>
+<main>
+    <section class="sectionBoat" id="section2Boat">
+        <div class="divPrincipalCategory">
+            <h2 class="h2Category">BARCOS</h2>
+            <ul class="ulCategory">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="Category.html">Categorias</a></li>
+                <li><a href="Client.html">Clientes</a></li>
+                <li><a href="Message.html">Mensajes</a></li>
+                <li><a href="Reservation.html">Reservaciones</a></li>
+            </ul>
+            <div class="divContenedor">
+                <div class="divContenedorIzq">
+                    <div class="divIzqJr">
+                        <div class="div-form">
+                            <h3>Ingresar Datos</h3>
+                            <form class="formDate">
+                                <label for="id">
+                                    <span>Id</span>
+                                    <input type="number" id="id" disabled="" placeholder="Ingresa id">
+                                </label>
+                                <label for="brand">
+                                    <span>Brand</span>
+                                    <input type="text" id="brand" placeholder="Ingresa brand">
+                                </label>
+                                <label for="year">
+                                    <span>Year</span>
+                                    <input type="number" id="year" placeholder="Ingresa year">
+                                </label>
+                                <label for="name">
+                                    <span>Name</span>
+                                    <input type="text" id="name" placeholder="Ingresa name">
+                                </label>
+                                <label for="description">
+                                    <span>Description</span>
+                                    <input type="text" id="description" placeholder="Ingresa description">
+                                </label>
+                            </form>
+                            <div class="divcatBoteInput">
+                                <span>Categoria</span>
+                                <input class="inputCategory" type="text" disabled="" id="category" placeholder="category">
+                                <span>Id</span>
+                                <input class="inputEnviarId" type="number" id="enviarId" placeholder="id">
+                            </div>
+                        </div>
+                        <div class="div-button">
+                            <button onclick="addInfoBoat()">Crear</button>
+                            <button onclick="modInfBoat()">Actualizar</button>
+                            <button onclick="getInfBoat()"> Consultar</button>
+                            <button onclick="queryByIdBoat()">TraerID</button>
+                            <input class="input-id" type="number" id="idBote" placeholder="id">
+                        </div>
+                    </div>
+                </div>
+                <div class="divContenedorDer">
+                    <h3>Mostrar Información</h3>
+                    <div class="div-table">
+                        <p id="resultadoBote"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>
