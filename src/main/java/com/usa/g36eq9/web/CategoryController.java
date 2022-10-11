@@ -42,7 +42,7 @@ public class CategoryController {
         categoryService.delete(id);
     }
     @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll(){
         categoryService.deleteAll();
     }

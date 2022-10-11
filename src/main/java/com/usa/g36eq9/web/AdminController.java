@@ -40,6 +40,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int idAdmin){
         return adminService.delete(idAdmin);
     }
