@@ -1,6 +1,7 @@
 package com.usa.g36eq9.service;
 
 import com.usa.g36eq9.model.Category;
+import com.usa.g36eq9.model.Message;
 import com.usa.g36eq9.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,13 +56,14 @@ public class CategoryService {
             return ct;
         }
     }
-    public void delete(int id){
-        Optional<Category> ct = categoryRepository.getCategory(id);
-        if(ct.isPresent()){
-            categoryRepository.delete(ct.get());
+    public boolean delete(int id){
+        boolean flag = false;
+        Optional<Category> m = categoryRepository.getCategory(id);
+        if(m.isPresent()){
+            categoryRepository.delete(m.get());
+            flag = true;
         }
+        return flag;
     }
-    public void deleteAll(){
-        categoryRepository.deleteAll();
-    }
+
 }

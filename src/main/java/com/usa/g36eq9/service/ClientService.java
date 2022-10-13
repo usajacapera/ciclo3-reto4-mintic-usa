@@ -1,6 +1,7 @@
 package com.usa.g36eq9.service;
 
 
+import com.usa.g36eq9.model.Category;
 import com.usa.g36eq9.model.Client;
 import com.usa.g36eq9.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,13 +63,14 @@ public class ClientService {
             return client;
         }
     }
-    public void delete(int idClient){
-        Optional<Client> c = clientRepository.getClient(idClient);
-        if(c.isPresent()){
-            clientRepository.delete(c.get());
+    public boolean delete(int idClient){
+        boolean flag = false;
+        Optional<Client> m = clientRepository.getClient(idClient);
+        if(m.isPresent()){
+            clientRepository.delete(m.get());
+            flag = true;
         }
+        return flag;
     }
-    public void deleteAll(){
-        clientRepository.deleteAll();
-    }
+
 }

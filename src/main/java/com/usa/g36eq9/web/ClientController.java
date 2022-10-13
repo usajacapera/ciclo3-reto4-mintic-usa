@@ -44,9 +44,5 @@ public class ClientController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") int idClient){ clientService.delete(idClient);
     }
-    @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAll(){
-        clientService.deleteAll();
-    }
+
 }

@@ -1,5 +1,5 @@
-let ruta = "http://150.136.171.92:8080"
-//let ruta ="http://localhost:8080"
+//let ruta = "http://150.136.171.92:8080"
+let ruta ="http://localhost:8080"
 /**
  * -----------------------------------------------------------------------------------------------------------
  *                                                  BARCOS
@@ -538,39 +538,42 @@ function queryByIdClient(){
                     myTableReservations += "<td>"+"CATEGORY"+"</td>";
                     myTableReservations += "</tr>";
                     myTableReservations += "</thead>";
-                    console.log(respuesta.reservations[0].boat.name);
-                    for(i=0; i<respuesta.reservations.length; i++){
-                        myTableReservations += "<tr>"
-                        myTableReservations += "<td>" + respuesta.reservations[i].idReservation + "</td>";
-                        myTableReservations += "<td>" + respuesta.reservations[i].startDate + "</td>";
-                        myTableReservations += "<td>" + respuesta.reservations[i].devolutionDate + "</td>";
-                        myTableReservations += "<td>" + respuesta.reservations[i].status + "</td>";
-                        myTableReservations += "<td>" + respuesta.reservations[i].boat.name + "</td>"
-                        myTableReservations += "<td>" + respuesta.reservations[i].boat.category.name + " " + "(" + respuesta.reservations[i].boat.category.description + ")" + "</td>";
+                    if(respuesta.reservations.length != 0){
+                        for(i=0; i<respuesta.reservations.length; i++){
+                            myTableReservations += "<tr>"
+                            myTableReservations += "<td>" + respuesta.reservations[i].idReservation + "</td>";
+                            myTableReservations += "<td>" + respuesta.reservations[i].startDate + "</td>";
+                            myTableReservations += "<td>" + respuesta.reservations[i].devolutionDate + "</td>";
+                            myTableReservations += "<td>" + respuesta.reservations[i].status + "</td>";
+                            myTableReservations += "<td>" + respuesta.reservations[i].boat.name + "</td>"
+                            myTableReservations += "<td>" + respuesta.reservations[i].boat.category.name + " " + "(" + respuesta.reservations[i].boat.category.description + ")" + "</td>";
+                        }
+                        $("#reservationsClient").append(myTableReservations);
+                    }else{
+                        alert("Aun no tiene reservas registradas")
                     }
-                    $("#reservations").append(myTableReservations);
-                    let myTableMessage = "<table>";
-                    myTableMessage += "<span>" + "MESSAGES" + "</span>";
-                    myTableMessage += "<thead>";
-                    myTableMessage += "<tr>";
-                    myTableMessage += "<td>"+"ID"+"</td>";
-                    myTableMessage += "<td>"+"MESSAGETEXT"+"</td>";
-                    myTableMessage += "</tr>";
-                    myTableMessage += "</thead>";
-                    for(i=0; i<respuesta.messages.length; i++){
-                        myTableMessage += "<tr>"
-                        myTableMessage += "<td>" + respuesta.messages[i].idMessage + "</td>";
-                        myTableMessage += "<td>" + respuesta.messages[i].messageText + "</td>";
+                    if(respuesta.messages.length != 0){
+                        let myTableMessage = "<table>";
+                        myTableMessage += "<span>" + "MESSAGES" + "</span>";
+                        myTableMessage += "<thead>";
+                        myTableMessage += "<tr>";
+                        myTableMessage += "<td>"+"ID"+"</td>";
+                        myTableMessage += "<td>"+"MESSAGETEXT"+"</td>";
+                        myTableMessage += "<td>"+"BOAT"+"</td>";
+                        myTableMessage += "<td>"+"CATEGORY"+"</td>";
+                        myTableMessage += "</tr>";
+                        myTableMessage += "</thead>";
+                        for(i=0; i<respuesta.messages.length; i++){
+                            myTableMessage += "<tr>"
+                            myTableMessage += "<td>" + respuesta.messages[i].idMessage + "</td>";
+                            myTableMessage += "<td>" + respuesta.messages[i].messageText + "</td>";
+                            myTableMessage += "<td>" + respuesta.messages[i].boat.name + "(" + "id:"+ respuesta.messages[i].boat.id + ")" + "</td>";
+                            myTableMessage += "<td>" + respuesta.messages[i].boat.category.name + "(" + "id:"+ respuesta.messages[i].boat.category.id + ")" + "</td>";
+                        }
+                        $("#messagesClient").append(myTableMessage);
+                    }else{
+                        alert("Aun no tiene mensajes registrados")
                     }
-                    $("#messages").append(myTableMessage);
-                    let myTableBoat = "<table>";
-                    myTableBoat += "<span>" + "BOAT" + "</span>"
-                    myTableBoat += "<thead>";
-                    myTableBoat += "<tr>";
-                    myTableBoat += "<td>" + "ID" + "</td>"
-                    myTableBoat += "<td>" + "ID" + "</td>"
-                    myTableBoat += "<td>" + "ID" + "</td>"
-                    myTableBoat += "<td>" + "ID" + "</td>"
                     alert("Petición realizada exitosamente")
                 }else{
                     alert("el ID no se encuentra resgistrado")
@@ -734,6 +737,43 @@ function traerMensajes(){
         }
     });
 }
+function queryByIdMessage(){
+    let id = $("#getOneMessage").val();
+    if(id == ""){
+        alert("Debe digitar el ID")
+    }else{
+        $.ajax({
+            headers:{
+                accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+            },
+            url: ruta + "/api/Message" + "/" + id,
+            type:"GET",
+            datatype:"JSON",
+            success: function(respuesta){
+                console.log(respuesta);
+                $("#resultadoMensajes").empty();
+                if(respuesta != null){
+                    $("#idMensaje").val(respuesta.idMessage);
+                    $("#messagetext").val(respuesta.messageText);
+                    $("#dataBoatMessage").val(respuesta.boat.name + " " + "(" +"id: " + respuesta.boat.id + ")" );
+                    $("#idGetBoatMessage").val(respuesta.boat.id);
+                    $("#dataClientMessage").val(respuesta.client.name);
+                    $("#idGetClientMessage").val(respuesta.client.idClient);
+                    alert("Producto encontrado satisfactoriamente")
+                }else{
+                    alert("el ID no se encuentra resgistrado")
+                }
+            },
+            error: function(xhr, status){
+                alert("ha sucedido un problema");
+                console.log(status);
+            },
+            complete : function(xhr, status){
+                console.log("Petición completada");
+            }
+        });
+    }
+}
 function pintarMensaje(respuesta){
     let myTable = "<table>";
     myTable += "<thead>";
@@ -754,119 +794,230 @@ function pintarMensaje(respuesta){
     myTable += "</table>";
     $("#resultadoMensajes").append(myTable);
 }
-function confirmBoat(){
-    let flag;
-    $.ajax({
-        headers:{
-            accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
-        },
-        url: ruta + "/api/Boat/all",
-        type:"GET",
-        datatype:"JSON",
-        success: function(response){
-            console.log(response);
-            let id=$("#idGetBoatMessage").val();
-            if(response.find(element => element.id == id) ){
-                flag = true;
-            }else{
-                flag = false;
-            }
-        }
-    });
-}
-function confirmClient(response){
-    let flag = false;
-    let id=$("#idGetClientMessage").val();
-    if(response.find(element => element.id == id) ){
-        flag = true;
-    }else{
-        flag = false;
-    }
-    return flag;
-}
 function guardarMensaje(){
     if(($("#idGetBoatMessage").val() != "") && ($("#idGetClientMessage").val() != "")){
-        if(!confirmBoat()){
-            alert("El id para Barco no se encuentra registrado");
-        }if(!confirmClient()){
-            alert("El id para Client no se encuentra regitrado");
-        }
-        if(confirmBoat() && confirmClient()){
-            let myData2 = {
-                idClient:$("#idGetClientMessage").val()
-            };
-            let myData3 = {
-                id:$("#idGetBoatMessage").val()
-            };
-            let myData = {
-                idMessage:$("#idMensaje").val(),
-                messageText:$("#messagetext").val(),
-                boat:myData3,
-                client:myData2
-            };
-            let dataToSend = JSON.stringify(myData);
-            $.ajax({
-                headers:{
-                    accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
-                },
-                url: ruta + "/api/Message/save",
-                type:"POST",
-                data:dataToSend,
-                datatype:"JSON",
-                success:function(respuesta){
-                    $("#resultadoMensajes").empty();
-                    $("#idMensaje").val("");
-                    $("#messagetext").val("");
-                    $("#idGetBoatMessage").val("");
-                    $("#idGetClientMessage").val("");
-                    traerMensajes();
-                    alert("Mensaje creado exitosamente");
-                },
-                error : function(xhr, status){
-                    alert("ha sucedido un problema");
-                    console.log(status);
-                },
-                complete : function(xhr, status){
-                    console.log("Petición completada");
+        $.ajax({
+            headers:{
+                accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+            },
+            url: ruta + "/api/Boat/all",
+            type:"GET",
+            datatype:"JSON",
+            success: function(barcos){
+                console.log(barcos);
+                let idBarco = $("#idGetBoatMessage").val()
+                if(barcos.find(element => element.id == idBarco)){
+                    $.ajax({
+                        headers:{
+                            accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+                        },
+                        url: ruta + "/api/Client/all",
+                        type:"GET",
+                        datatype:"JSON",
+                        success: function(clientes){
+                            console.log(clientes);
+                            let idCliente = $("#idGetClientMessage").val();
+                            if(clientes.find(element => element.idClient == idCliente)){
+                                let myData2 = {
+                                    idClient:$("#idGetClientMessage").val()
+                                };
+                                let myData3 = {
+                                    id:$("#idGetBoatMessage").val()
+                                };
+                                let myData = {
+                                    idMessage:$("#idMensaje").val(),
+                                    messageText:$("#messagetext").val(),
+                                    boat:myData3,
+                                    client:myData2
+                                };
+                                let dataToSend = JSON.stringify(myData);
+                                $.ajax({
+                                    headers:{
+                                        accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+                                    },
+                                    url: ruta + "/api/Message/save",
+                                    type:"POST",
+                                    data:dataToSend,
+                                    datatype:"JSON",
+                                    success:function(mensajes){
+                                        console.log(mensajes)
+                                        $("#resultadoMensajes").empty();
+                                        $("#idMensaje").val("");
+                                        $("#messagetext").val("");
+                                        $("#idGetBoatMessage").val("");
+                                        $("#idGetClientMessage").val("");
+                                        traerMensajes();
+                                        alert("Mensaje creado exitosamente");
+                                    },
+                                    error : function(xhr, status){
+                                        alert("ha sucedido un problema");
+                                        console.log(status);
+                                    },
+                                    complete : function(xhr, status){
+                                        console.log("Petición completada");
+                                    }
+                                });
+                            }else{
+                                alert("El id para cliente no se encuentra registrado")
+                            }
+                        }
+                    })
+
+                }else{
+                    alert("El id para barco no se encuentra resgitrado")
                 }
-            });
-        }
+            }
+        })
     }else{
         alert("Debe asignar el mensaje a un cliente y un barco")
+    }//close if/else
+}//close function
+function editarMensaje(){
+    if($("#idGetBoatMessage").val() != "" && $("#idGetClientMessage").val() != ""){
+        let dataBarco = {
+            id:$("#idGetBoatMessage").val()
+        }
+        let dataCliente = {
+            idClient: $("#idGetClientMessage").val()
+        }
+        let myData = {
+            idMessage:$("#idMensaje").val(),
+            messageText:$("#messagetext").val(),
+            boat:dataBarco,
+            client:dataCliente
+        };
+        let dataToSend=JSON.stringify(myData);
+        $.ajax({
+            headers:{
+                accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+            },
+            url: ruta + "/api/Message/update",
+            type:"PUT",
+            data:dataToSend,
+            datatype:"JSON",
+            success:function(respuesta){
+                $("#resultadoMensajes").empty();
+                $("#idMensaje").val(respuesta.idMessage);
+                $("#messagetext").val(respuesta.messageText);
+                if(respuesta.boat.category != null){
+                    $("#dataBoatMessage").val(respuesta.boat.name + "(" + "cat: " + respuesta.boat.category.name + ")");
+                }else{
+                    $("#dataBoatMessage").val("Sin categoria asignada");
+                }
+                $("#idGetBoatMessage").val(respuesta.boat.id);
+                $("#dataClientMessage").val(respuesta.client.name);
+                $("#idGetClientMessage").val(respuesta.client.idClient);
+                traerMensajes();
+                alert("Mensaje actualizado exitosamente");
+            },
+            error : function(xhr, status){
+                alert("ha sucedido un problema");
+                console.log(status);
+            },
+            complete : function(xhr, status){
+                console.log("Petición completada");
+            }
+        });
+    } else if($("#idGetBoatMessage").val() != "" && $("#idGetClientMessage").val() == ""){
+        let dataBarco = {
+            id:$("#idGetBoatMessage").val()
+        }
+        let myData = {
+            idMessage:$("#idMensaje").val(),
+            messageText:$("#messagetext").val(),
+            boat:dataBarco,
+        };
+        let dataToSend=JSON.stringify(myData);
+        $.ajax({
+            headers:{
+                accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+            },
+            url: ruta + "/api/Message/update",
+            type:"PUT",
+            data:dataToSend,
+            contentType:"application/JSON",
+            datatype:"JSON",
+            success:function(respuesta){
+                $("#resultadoMensajes").empty();
+                $("#idMensaje").val("");
+                $("#messagetext").val("");
+                traerMensajes();
+                alert("Mensaje actualizado exitosamente");
+            },
+            error : function(xhr, status){
+                alert("ha sucedido un problema");
+                console.log(status);
+            },
+            complete : function(xhr, status){
+                console.log("Petición completada");
+            }
+        });
+    }else if($("#idGetBoatMessage").val() == "" && $("#idGetClientMessage").val() != ""){
+        let dataCliente = {
+            idClient: $("#idGetClientMessage").val()
+        }
+        let myData = {
+            idMessage:$("#idMensaje").val(),
+            messageText:$("#messagetext").val(),
+            client:dataCliente
+        };
+        let dataToSend=JSON.stringify(myData);
+        $.ajax({
+            headers:{
+                accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+            },
+            url: ruta + "/api/Message/update",
+            type:"PUT",
+            data:dataToSend,
+            contentType:"application/JSON",
+            datatype:"JSON",
+            success:function(respuesta){
+                $("#resultadoMensajes").empty();
+                $("#idMensaje").val("");
+                $("#messagetext").val("");
+                traerMensajes();
+                alert("Mensaje actualizado exitosamente");
+            },
+            error : function(xhr, status){
+                alert("ha sucedido un problema");
+                console.log(status);
+            },
+            complete : function(xhr, status){
+                console.log("Petición completada");
+            }
+        });
+    }else{
+        let myData = {
+            idMessage:$("#idMensaje").val(),
+            messageText:$("#messagetext").val(),
+        };
+        let dataToSend=JSON.stringify(myData);
+        $.ajax({
+            headers:{
+                accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+            },
+            url: ruta + "/api/Message/update",
+            type:"PUT",
+            data:dataToSend,
+            contentType:"application/JSON",
+            datatype:"JSON",
+            success:function(respuesta){
+                $("#resultadoMensajes").empty();
+                $("#idMensaje").val("");
+                $("#messagetext").val("");
+                traerMensajes();
+                alert("Mensaje actualizado exitosamente");
+            },
+            error : function(xhr, status){
+                alert("ha sucedido un problema");
+                console.log(status);
+            },
+            complete : function(xhr, status){
+                console.log("Petición completada");
+            }
+        });
     }
 
-}
-function editarMensaje(){
-    let myData = {
-        idMessage:$("#idMensaje").val(),
-        messageText:$("#messagetext").val(),
-    };
-    console.log(myData);
-    let dataToSend=JSON.stringify(myData);
-    $.ajax({
-        headers:{
-            accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
-        },
-        url: ruta + "/api/Message/update",
-        type:"PUT",
-        data:dataToSend,
-        contentType:"application/JSON",
-        datatype:"JSON",
-        success:function(respuesta){
-            $("#resultadoMensajes").empty();
-            $("#idMensaje").val("");
-            $("#messagetext").val("");
-            traerMensajes();
-            alert("Mensaje actualizado exitosamente");
-        },
-        error : function(xhr, status){
-            alert("ha sucedido un problema");
-            console.log(status);
-        },
-        complete : function(xhr, status){
-            console.log("Petición completada");
-        }
-    });
 }
 function borrarMensaje(idElemento){
     let id = parseInt(idElemento);
@@ -933,7 +1084,7 @@ function verificarIdReservation(respuesta){
 }
 function queryByIdReservation(){
     let id = $("#SetIdReservation").val();
-    if(id === ""){
+    if(id == ""){
         alert("Debe digitar el ID")
     }else{
         $.ajax({
@@ -946,7 +1097,7 @@ function queryByIdReservation(){
             success: function(respuesta){
                 console.log(respuesta);
                 $("#resultadoReservaciones").empty();
-                if(verificarIdReservation(respuesta)){
+                if(respuesta != null){
                     if(respuesta.boat == null && respuesta.client == null){
                         vacioCliente = "Sin cliente asignao"
                         vacioBarco = "Sin barco asignado";
@@ -1015,7 +1166,7 @@ function showReservations(respuesta){
             myTable += "<td>" + respuesta[i].idReservation + "</td>";
             myTable += "<td>" + respuesta[i].startDate + "</td>";
             myTable += "<td>" + respuesta[i].devolutionDate + "</td>";
-            myTable += "<td>" + respuesta[i].boat.name + " " + "(" + "Categoria: " + respuesta[i].boat.category.name + "-" + respuesta[i].boat.category.description + ")" + "</td>";
+            myTable += "<td>" + respuesta[i].boat.name + " " + "(" + respuesta[i].boat.category.name + "-" + respuesta[i].boat.category.description + ")" + "</td>";
             myTable += "<td>" + respuesta[i].client.name + "</td>";
             myTable += "<td>" + vacioScore+ "</td>";
             myTable += "<td> <button onclick='removeReservation("+respuesta[i].idReservation+")'>Borrar</button>";
@@ -1036,46 +1187,51 @@ function showReservations(respuesta){
     $("#resultadoReservaciones").append(myTable);
 }
 function createReservation(){
-    let myData2 = {
-        idClient:$("#idGetClient").val()
-    };
-    let myData3 = {
-        id:$("#idGetBoat").val()
-    };
-    let myData = {
-        idReservation:$("#idReservation").val(),
-        startDate:$("#startDate").val(),
-        devolutionDate:$("#devolutionDate").val(),
-        client:myData2,
-        boat:myData3,
-    };
-    let dataToSend = JSON.stringify(myData);
-    $.ajax({
-        headers:{
-            accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
-        },
-        url: ruta + "/api/Reservation/save",
-        type:"POST",
-        data:dataToSend,
-        contentType: "application/json",
-        datatype:"JSON",
-        success:function(respuesta){
-            console.log(respuesta);
-            $("#resultadoReservaciones").empty();
-            $("#devolutionDate").val("");
-            $("#idGetBoat").val("");
-            $("#idGetClient").val("");
-            alert("Se ha creado la reserva exitosamente")
-            getReservations();
-        },
-        error : function(xhr, status){
-            alert("ha sucedido un problema");
-            console.log(status);
-        },
-        complete : function(xhr, status){
-            console.log("Petición completada");
-        }
-    });
+    if($("#idGetBoat").val() != null && $("#idGetClient").val() != null){
+        let myData2 = {
+            idClient:$("#idGetClient").val()
+        };
+        let myData3 = {
+            id:$("#idGetBoat").val()
+        };
+        let myData = {
+            idReservation:$("#idReservation").val(),
+            startDate:$("#startDate").val(),
+            devolutionDate:$("#devolutionDate").val(),
+            client:myData2,
+            boat:myData3,
+        };
+        let dataToSend = JSON.stringify(myData);
+        $.ajax({
+            headers:{
+                accept: 'application/json',"Access-Control-Allow-Origin":"*", "Content-Type": 'application/json'
+            },
+            url: ruta + "/api/Reservation/save",
+            type:"POST",
+            data:dataToSend,
+            contentType: "application/json",
+            datatype:"JSON",
+            success:function(respuesta){
+                console.log(respuesta);
+                $("#resultadoReservaciones").empty();
+                $("#devolutionDate").val("");
+                $("#idGetBoat").val("");
+                $("#idGetClient").val("");
+                alert("Se ha creado la reserva exitosamente")
+                getReservations();
+            },
+            error : function(xhr, status){
+                alert("ha sucedido un problema");
+                console.log(status);
+            },
+            complete : function(xhr, status){
+                console.log("Petición completada");
+            }
+        });
+    }else{
+        alert("Debe asignar un barco y un cliente a la reserva")
+    }
+
 }
 function modReservation(){
     let myData2 = {

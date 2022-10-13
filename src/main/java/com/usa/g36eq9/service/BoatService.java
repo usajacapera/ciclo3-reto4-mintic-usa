@@ -1,6 +1,7 @@
 package com.usa.g36eq9.service;
 
 import com.usa.g36eq9.model.Boat;
+import com.usa.g36eq9.model.Message;
 import com.usa.g36eq9.repository.BoatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,13 +62,14 @@ public class BoatService {
             return b;
         }
     }
-    public void delete(int id){
-        Optional<Boat> b = boatRepository.getBoat(id);
-        if(b.isPresent()){
-            boatRepository.delete(b.get());
+    public boolean delete(int id){
+        boolean flag = false;
+        Optional<Boat> m = boatRepository.getBoat(id);
+        if(m.isPresent()){
+            boatRepository.delete(m.get());
+            flag = true;
         }
+        return flag;
     }
-    public void deleteAll(){
-        boatRepository.deleteAll();
-    }
+
 }
